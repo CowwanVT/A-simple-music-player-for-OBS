@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <style>
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box; 
+      }
+      .outline{
+        background: none;
+        text-align: left;
+        font-family: "Helvetica", "Helvetica Neue" ;
+        font-weight: bold;
+        font-Size: 48px;
+        color: white ;
+        padding: 10px;
+        -webkit-text-fill-color: white;
+        -webkit-text-stroke-width: 5px;
+        -webkit-text-stroke-color: black;
+        margin: auto;   
+        position: absolute;
+        z-index: 9;
+      }
+      .text{
+        background: none;
+        text-align: left;
+        font-family: "Helvetica", "Helvetica Neue" ;
+        font-weight: bold;
+        font-Size: 48px;
+        color: white ;
+        padding: 10px;
+        margin: auto;    
+        position: absolute;
+        z-index: 10; 
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="info_outline" class="outline"></div>
+      <div id="info"  class="text"></div>
+      <div id="player"></div>
+    </div>
+
+    <script src="./AudioFiles.js"></script>
+    <script type="module" >
+
+      function playSong(song)
+      {
+        return new Promise((resolve) => {
+          song.onloadeddata = function()
+          {
+            song.play();
+            song.onended = resolve;
+
+          }
+        });
+
+      }
+
+      async function main()
+      {
+        let songIndex = 0;
+        var song = null;
+        while(true)
+        {
+
+          songIndex = Math.floor(Math.random()*files.length);
+          document.getElementById('info').innerHTML = `  <span id="songAuthor">${files[songIndex].Title}</span>`;
+          document.getElementById('info_outline').innerHTML = `  <span id="songAuthor">${files[songIndex].Title}</span>`;
+          var song = new Audio(files[songIndex].Filename );
+          await playSong(song)
+
+        }
+
+      }
+
+      main();
+
+    </script>
+  </body>
+</html>
