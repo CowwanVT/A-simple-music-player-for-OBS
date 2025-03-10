@@ -1,15 +1,15 @@
-#A simple music player for OBS
+## A simple music player for OBS
 
 Basically the bare minimum for using local music as a browser source in OBS. Playback is always randomized (but I can do ordered playback if that something someone wants)
 
-#Requirements:
+## Requirements:
 
 -OBS
 
 -Python
 
 
-#To use:
+## To use:
 
 -Download the repo
 
